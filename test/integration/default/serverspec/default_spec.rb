@@ -1,11 +1,11 @@
 require 'spec_helper'
 
 describe selinux do
-	it { should be_permissive }
+  it { should be_permissive }
 end
 
 describe command('cat /proc/sys/vm/swappiness') do
-	its(:stdout) { should match "0" }
+  its(:stdout) { should match '0' }
 end
 
 describe group('mysql') do
@@ -108,7 +108,6 @@ describe service('mysql') do
   it { should be_running }
 end
 
-
 describe file('/data/mysql/ib_logfile*') do
   it { should_not exist }
 end
@@ -121,4 +120,3 @@ end
 describe command('/usr/bin/mysql -uroot -pchange_me -S /tmp/mysqld.sock -e "use mysql;select user from user;" | grep repl') do
   its(:exit_status) { should eq 0 }
 end
-
